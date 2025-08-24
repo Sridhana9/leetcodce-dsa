@@ -1,22 +1,17 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int n=nums.length;
-        int[] arr=new int[n+1];
-        for(int i=0;i<n+1;i++){
-            arr[i]=i;
+        int n = nums.length;
+        
+        // Expected sum of 0..n
+        int sum = (n * (n + 1)) / 2;
+        
+        // Actual sum of given array
+        int s2 = 0;
+        for (int num : nums) {
+            s2 += num;
         }
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n+1;j++){
-                if (nums[i]==arr[j]) arr[j]=0;
-            }
-
-        }
-        int ans=0;
-        for(int i=0;i<n+1;i++){
-            if(arr[i]!=0){
-                ans=arr[i];
-            }
-        }
-        return ans;
+        
+        // Missing number = difference
+        return sum - s2;
     }
 }
